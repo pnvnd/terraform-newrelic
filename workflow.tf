@@ -239,11 +239,11 @@ resource "newrelic_workflow" "workflow-example" {
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_alert_policy.golden_signals.id ]
     }
-
+    # AND
     predicates {
       attribute = "conditionName"
       operator = "EXACTLY_MATCHES"
-      values = [ newrelic_nrql_alert_condition.saturation.name ]
+      values = [ newrelic_nrql_alert_condition.saturation.name, newrelic_nrql_alert_condition.latency.name ]
     }
   }
 
