@@ -152,3 +152,107 @@ resource "newrelic_nrql_alert_condition" "saturation" {
 
   enabled                        = true
 }
+
+# Create a destination
+
+resource "newrelic_notification_destination" "webhook-destination" {
+  account_id = var.new_relic_account_id
+  name = "destination-webhook"
+  type = "WEBHOOK"
+
+  property {
+    key = "url"
+    value = "https://enmne0dukohge.x.pipedream.net/"
+  }
+
+  # auth_basic {
+  #   user = "username"
+  #   password = "password"
+  # }
+
+}
+
+resource "newrelic_notification_channel" "webhook-channel" {
+  account_id = var.new_relic_account_id
+  name = "channel-webhook"
+  type = "WEBHOOK"
+  destination_id = newrelic_notification_destination.webhook-destination.id
+  product = "IINT"
+
+  property {
+    label = "Payload Template"
+    key = "payload"
+    value = "{\"name\": \"foo\"}"
+
+  }
+}
+
+resource "newrelic_notification_destination" "email-destination" {
+  account_id = var.new_relic_account_id
+  name = "destination-email"
+  type = "EMAIL"
+
+  property {
+    key = "email"
+    value = "peter@datacrunch.ca"
+  }
+}
+
+resource "newrelic_notification_channel" "email-channel" {
+  account_id = var.new_relic_account_id
+  name = "channel-email"
+  type = "EMAIL"
+  destination_id = newrelic_notification_destination.email-destination.id
+  product = "IINT"
+
+  property {
+    key = "subject"
+    value = "{{ issueTitle }}"
+  }
+
+  property {
+    key = "customDetailsEmail"
+    value = "The issue title is: {{ issueTitle }}"
+  }
+}
+
+resource "newrelic_workflow" "workflow-example" {
+  name = "workflow-example"
+  account_id = var.new_relic_account_id
+  muting_rules_handling = "NOTIFY_ALL_ISSUES"
+
+  enrichments {
+    nrql {
+      name = "Log count"
+      configurations {
+       query = "SELECT count(*) FROM Log"
+      }
+    }
+  }
+
+  issues_filter {
+    name = "Filter-name"
+    type = "FILTER"
+
+    predicates {
+      attribute = "labels.policyIds"
+      operator = "EXACTLY_MATCHES"
+      values = [ newrelic_alert_policy.golden_signals.id ]
+    }
+
+    predicates {
+      attribute = "conditionName"
+      operator = "EXACTLY_MATCHES"
+      values = [ newrelic_nrql_alert_condition.saturation.name ]
+    }
+  }
+
+  destination_configuration {
+    channel_id = newrelic_notification_channel.webhook-channel.id
+  }
+
+  destination_configuration {
+    channel_id = newrelic_notification_channel.email-channel.id
+  }
+
+}
