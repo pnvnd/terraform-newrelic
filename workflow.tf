@@ -155,6 +155,49 @@ resource "newrelic_nrql_alert_condition" "saturation" {
 
 # Create a destination
 
+resource "newrelic_notification_destination" "slack-destination" {
+  account_id = var.new_relic_account_id
+  active     = true
+  name       = "Datacrunch"
+  type       = "SLACK"
+
+  lifecycle {
+    ignore_changes = [
+      auth_token
+    ]
+  }
+
+  property {
+      key   = "scope"
+      label = "Permissions"
+      value = "app_mentions:read,channels:join,channels:read,chat:write,chat:write.public,commands,groups:read,links:read,links:write,team:read,users:read"
+  }
+
+  property {
+      key   = "teamName"
+      label = "Team Name"
+      value = "Datacrunch"
+  }
+}
+
+resource "newrelic_notification_channel" "slack-channel" {
+  account_id = var.new_relic_account_id
+  name = "channel-slack"
+  type = "SLACK"
+  destination_id = newrelic_notification_destination.slack-destination.id
+  product = "IINT"
+
+  property {
+    key = "channelId"
+    value = "C03L4C874AX"
+  }
+
+  property {
+    key = "customDetailsSlack"
+    value = "issue id - {{issueId}}"
+  }
+}
+
 resource "newrelic_notification_destination" "webhook-destination" {
   account_id = var.new_relic_account_id
   name = "destination-webhook"
@@ -183,7 +226,6 @@ resource "newrelic_notification_channel" "webhook-channel" {
     label = "Payload Template"
     key = "payload"
     value = "{\"name\": \"foo\"}"
-
   }
 }
 
@@ -224,7 +266,7 @@ resource "newrelic_workflow" "workflow-example" {
   enrichments {
     nrql {
       name = "Log count"
-      configurations {
+      configuration {
        query = "SELECT count(*) FROM Log"
       }
     }
@@ -234,24 +276,28 @@ resource "newrelic_workflow" "workflow-example" {
     name = "Filter-name"
     type = "FILTER"
 
-    predicates {
+    predicate {
       attribute = "labels.policyIds"
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_alert_policy.golden_signals.id ]
     }
     # AND
-    predicates {
+    predicate {
       attribute = "conditionName"
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_nrql_alert_condition.saturation.name, newrelic_nrql_alert_condition.latency.name ]
     }
   }
 
-  destination_configuration {
+  destination {
+    channel_id = newrelic_notification_channel.slack-channel.id
+  }
+
+  destination {
     channel_id = newrelic_notification_channel.webhook-channel.id
   }
 
-  destination_configuration {
+  destination {
     channel_id = newrelic_notification_channel.email-channel.id
   }
 

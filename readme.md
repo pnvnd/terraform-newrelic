@@ -23,3 +23,26 @@
 1. Enter `terraform plan` to see what the `.tf` files will do
 1. Enter `terraform apply` and type `yes` to confirm creating the resources
 1. If you don't need the resources any more, remove them with `terraform destroy`
+
+## For Slack Destinations
+1. `terraform import newrelic_notification_destination.slack-destination 17ed6b53-c8f9-4d9d-b02a-a25a38e4570d` (Use your own destination id)
+2. `terraform state list` to make sure it's there
+3. `terraform state show newrelic_notification_destination.slack-destination` to see the configuration
+4. Copy the results from step 3 and paste into your terraform file.  Remove: `account_id`, `id`, `status`
+5. Replace the following
+   ```
+   auth_token {
+     prefix = "Bearer"
+   }
+   ```
+   with
+
+   ```  
+   lifecycle {
+     ignore_changes = [
+       auth_token
+     ]
+   }
+   ```
+6. Use `terraform apply` as usual
+7. IMPORTANT: Do `terraform state rm newrelic_notification_destination.slack-destination` first before `terraform destory` otherwise the Slack destination will be malformed.
