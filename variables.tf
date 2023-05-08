@@ -20,6 +20,11 @@ variable "new_relic_region" {
     default = "US"
 }
 
+variable "aws_region" {
+    type = string
+    default = "ca-central-1"
+}
+
 variable "team" {
     type = string
     default = "datacrunch-dev"
