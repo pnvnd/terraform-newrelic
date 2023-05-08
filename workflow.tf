@@ -113,7 +113,7 @@ resource "newrelic_nrql_alert_condition" "saturation" {
   }
 
   # Set your condition thresholds
-  type                           = "static"
+  type                    = "static"
 
   critical {
     operator              = "above"
@@ -155,48 +155,48 @@ resource "newrelic_nrql_alert_condition" "saturation" {
 
 # Create a destination
 
-resource "newrelic_notification_destination" "slack-destination" {
-  account_id = var.new_relic_account_id
-  active     = true
-  name       = "Datacrunch"
-  type       = "SLACK"
+# resource "newrelic_notification_destination" "slack-destination" {
+#   account_id = var.new_relic_account_id
+#   active     = true
+#   name       = "Datacrunch"
+#   type       = "SLACK"
 
-  lifecycle {
-    ignore_changes = [
-      auth_token
-    ]
-  }
+#   lifecycle {
+#     ignore_changes = [
+#       auth_token
+#     ]
+#   }
 
-  property {
-      key   = "scope"
-      label = "Permissions"
-      value = "app_mentions:read,channels:join,channels:read,chat:write,chat:write.public,commands,groups:read,links:read,links:write,team:read,users:read"
-  }
+#   property {
+#       key   = "scope"
+#       label = "Permissions"
+#       value = "app_mentions:read,channels:join,channels:read,chat:write,chat:write.public,commands,groups:read,links:read,links:write,team:read,users:read"
+#   }
 
-  property {
-      key   = "teamName"
-      label = "Team Name"
-      value = "Datacrunch"
-  }
-}
+#   property {
+#       key   = "teamName"
+#       label = "Team Name"
+#       value = "Datacrunch"
+#   }
+# }
 
-resource "newrelic_notification_channel" "slack-channel" {
-  account_id = var.new_relic_account_id
-  name = "channel-slack"
-  type = "SLACK"
-  destination_id = newrelic_notification_destination.slack-destination.id
-  product = "IINT"
+# resource "newrelic_notification_channel" "slack-channel" {
+#   account_id = var.new_relic_account_id
+#   name = "channel-slack"
+#   type = "SLACK"
+#   destination_id = newrelic_notification_destination.slack-destination.id
+#   product = "IINT"
 
-  property {
-    key = "channelId"
-    value = "C03L4C874AX"
-  }
+#   property {
+#     key = "channelId"
+#     value = "C03L4C874AX"
+#   }
 
-  property {
-    key = "customDetailsSlack"
-    value = "issue id - {{issueId}}"
-  }
-}
+#   property {
+#     key = "customDetailsSlack"
+#     value = "issue id - {{issueId}}"
+#   }
+# }
 
 resource "newrelic_notification_destination" "webhook-destination" {
   account_id = var.new_relic_account_id
