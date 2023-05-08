@@ -22,4 +22,5 @@ variable "new_relic_region" {
 
 variable "team" {
     type = string
+    default = "datacrunch-dev"
 }

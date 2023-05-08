@@ -1,9 +1,9 @@
 terraform {
-  required_version = "~> 1.3.6"
+  required_version = "~> 1.4.6"
   required_providers {
     newrelic = {
       source  = "newrelic/newrelic"
-      version = "~> 3.20.2"
+      version = "~> 3.22.0"
     }
   }
 }

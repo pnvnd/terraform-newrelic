@@ -283,15 +283,15 @@ resource "newrelic_workflow" "workflow-example" {
     }
     # AND
     predicate {
-      attribute = "conditionName"
+      attribute = "accumulations.conditionName"
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_nrql_alert_condition.saturation.name, newrelic_nrql_alert_condition.latency.name ]
     }
   }
 
-  destination {
-    channel_id = newrelic_notification_channel.slack-channel.id
-  }
+  # destination {
+  #   channel_id = newrelic_notification_channel.slack-channel.id
+  # }
 
   destination {
     channel_id = newrelic_notification_channel.webhook-channel.id
