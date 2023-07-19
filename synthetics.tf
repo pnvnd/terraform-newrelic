@@ -34,10 +34,10 @@ resource "newrelic_synthetics_monitor" "ping" {
   treat_redirect_as_failure = false
   validation_string         = ""
 
-  custom_header {
-    name  = ""
-    value = ""
-  }
+  # custom_header {
+  #   name  = "api-key"
+  #   value = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  # }
 
   tag {
       key    = "team"
