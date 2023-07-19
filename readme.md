@@ -1,4 +1,6 @@
 # Terraform Examples with New Relic
+Rename files to remove the `.example` extension and run the script.
+Use `terraform init -upgrade -reconfigure` when you need to get back to a clean state.
 
 ## Installing Terraform on Windows
 1. Download the [latest version of Terrafrom](https://www.terraform.io/downloads) `Amd64`

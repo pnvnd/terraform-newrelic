@@ -1,9 +1,13 @@
 terraform {
-  required_version = "~> 1.4.6"
+  required_version = "~> 1.5.3"
   required_providers {
     newrelic = {
       source  = "newrelic/newrelic"
-      version = "~> 3.22.0"
+      version = "~> 3.25.2"
+    }
+    aws = {
+    source  = "hashicorp/aws"
+    version = "~> 5.8.0"
     }
   }
 }
