@@ -1,0 +1,1439 @@
+# https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_monitor
+
+locals {  
+  pingURLs = [
+    {
+      "name": "001 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "002 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "003 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "004 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "005 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "006 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "007 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "008 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "009 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "010 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "011 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "012 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "013 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "014 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "015 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "016 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "017 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "018 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "019 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "020 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "021 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "022 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "023 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "024 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "025 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "026 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "027 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "028 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "029 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "030 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "031 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "032 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "033 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "034 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "035 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "036 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "037 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "038 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "039 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "040 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "041 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "042 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "043 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "044 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "045 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "046 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "047 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "048 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "049 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "050 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "051 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "052 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "053 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "054 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "055 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "056 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "057 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "058 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "059 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "060 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "061 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "062 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "063 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "064 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "065 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "066 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "067 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "068 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "069 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "070 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "071 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "072 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "073 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "074 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "075 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "076 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "077 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "078 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "079 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "080 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "081 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "082 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "083 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "084 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "085 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "086 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "087 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "088 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "089 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "090 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "091 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "092 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "093 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "094 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "095 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "096 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "097 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "098 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "099 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "100 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "101 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "102 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "103 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "104 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "105 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "106 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "107 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "108 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "109 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "110 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "111 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "112 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "113 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "114 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "115 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "116 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "117 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "118 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "119 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "120 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "121 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "122 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "123 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "124 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "125 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "126 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "127 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "128 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "129 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "130 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "131 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "132 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "133 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "134 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "135 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "136 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "137 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "138 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "139 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "140 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "141 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "142 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "143 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "144 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "145 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "146 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "147 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "148 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "149 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "150 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "151 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "152 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "153 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "154 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "155 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "156 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "157 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "158 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "159 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "160 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "161 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "162 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "163 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "164 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "165 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "166 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "167 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "168 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "169 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "170 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "171 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "172 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "173 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "174 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "175 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "176 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "177 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "178 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "179 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "180 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "181 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "182 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "183 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "184 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "185 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "186 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "187 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "188 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "189 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "190 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "191 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "192 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "193 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "194 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "195 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "196 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "197 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "198 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "199 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "200 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "201 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "202 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "203 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "204 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "205 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "206 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "207 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "208 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "209 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "210 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "211 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "212 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "213 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "214 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "215 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "216 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "217 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "218 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "219 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "220 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "221 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "222 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "223 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "224 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "225 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "226 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "227 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "228 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "229 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "230 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "231 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "232 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "233 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "234 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "235 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "236 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "237 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "238 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "239 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "240 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "241 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "242 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "243 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "244 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "245 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "246 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "247 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "248 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "249 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "250 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "251 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "252 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "253 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "254 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "255 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "256 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "257 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "258 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "259 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "260 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "261 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "262 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "263 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "264 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "265 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "266 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "267 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "268 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "269 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "270 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "271 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "272 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "273 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "274 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "275 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "276 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "277 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "278 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "279 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "280 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "281 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "282 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "283 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "284 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "285 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "286 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "287 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "288 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "289 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "290 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "291 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "292 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "293 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "294 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "295 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "296 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "297 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "298 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "299 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "300 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "301 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "302 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "303 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "304 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "305 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "306 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "307 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "308 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "309 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "310 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "311 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "312 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "313 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "314 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "315 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "316 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "317 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "318 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "319 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "320 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "321 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "322 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "323 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "324 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "325 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "326 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "327 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "328 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "329 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "330 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "331 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "332 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "333 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "334 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "335 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "336 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "337 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "338 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "339 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "340 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "341 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "342 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "343 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "344 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "345 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "346 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "347 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "348 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "349 Test",
+      "uri": "https://newrelic.com"
+    },
+    {
+      "name": "350 Test",
+      "uri": "https://newrelic.com"
+    }
+  ]
+}
+
+resource "newrelic_synthetics_monitor" "ping" {
+  count                     = length(local.pingURLs)
+  uri                       = local.pingURLs[count.index].uri
+  
+  name                      = "Example Ping ${local.pingURLs[count.index].name}"
+  type                      = "SIMPLE"
+  period                    = "EVERY_DAY"
+  status                    = "DISABLED"
+
+# https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/administration/synthetic-public-minion-ips/#location
+  locations_public          = ["AWS_CA_CENTRAL_1"]
+  verify_ssl                = false
+  bypass_head_request       = false
+  treat_redirect_as_failure = false
+  validation_string         = ""
+
+  # custom_header {
+  #   name  = "api-key"
+  #   value = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  # }
+
+  tag {
+      key    = "team"
+      values = ["datacrunch"]
+    }
+
+  tag {
+      key    = "APP-ID"
+      values = ["12345"]
+    }
+
+}

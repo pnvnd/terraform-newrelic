@@ -12,7 +12,7 @@ variable "new_relic_account_id" {
 
 variable "new_relic_account_name" {
     type = string
-    default = "Production"
+    default = "Datacrunch"
 }
 
 variable "new_relic_region" {
@@ -27,5 +27,5 @@ variable "aws_region" {
 
 variable "team" {
     type = string
-    default = "datacrunch-dev"
+    default = "DevOps"
 }

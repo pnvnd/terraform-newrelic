@@ -131,14 +131,6 @@ resource "aws_kinesis_firehose_delivery_stream" "newrelic_firehose_log_stream" {
   name        = "newrelic_firehose_log_stream"
   destination = "http_endpoint"
 
-  s3_configuration {
-    role_arn           = aws_iam_role.firehose_newrelic_log_role.arn
-    bucket_arn         = aws_s3_bucket.newrelic_aws_bucket_logs.arn
-    buffer_size        = 10
-    buffer_interval    = 400
-    compression_format = "GZIP"
-  }
-
   http_endpoint_configuration {
     url                = var.NEW_RELIC_CLOUDWATCH_LOG_ENDPOINT
     name               = "New Relic Logs"
@@ -147,7 +139,13 @@ resource "aws_kinesis_firehose_delivery_stream" "newrelic_firehose_log_stream" {
     buffering_interval = 60
     role_arn           = aws_iam_role.firehose_newrelic_log_role.arn
     s3_backup_mode     = "FailedDataOnly"
-
+    s3_configuration {
+      role_arn           = aws_iam_role.firehose_newrelic_log_role.arn
+      bucket_arn         = aws_s3_bucket.newrelic_aws_bucket_logs.arn
+      buffering_size     = 10
+      buffering_interval = 400
+      compression_format = "GZIP"
+  }
     request_configuration {
       content_encoding = "GZIP"
     }
@@ -203,10 +201,10 @@ resource "aws_cloudwatch_log_subscription_filter" "newrelic_logfilter_1" {
   destination_arn = aws_kinesis_firehose_delivery_stream.newrelic_firehose_log_stream.arn
 }
 
-resource "aws_cloudwatch_log_subscription_filter" "newrelic_logfilter_2" {
-  name            = "newrelic-logfilter"
-  role_arn        = aws_iam_role.log_stream_to_firehose.arn
-  log_group_name  = "/aws/batch/job"
-  filter_pattern  = ""
-  destination_arn = aws_kinesis_firehose_delivery_stream.newrelic_firehose_log_stream.arn
-}
+# resource "aws_cloudwatch_log_subscription_filter" "newrelic_logfilter_2" {
+#   name            = "newrelic-logfilter"
+#   role_arn        = aws_iam_role.log_stream_to_firehose.arn
+#   log_group_name  = "/aws/batch/job"
+#   filter_pattern  = ""
+#   destination_arn = aws_kinesis_firehose_delivery_stream.newrelic_firehose_log_stream.arn
+# }
