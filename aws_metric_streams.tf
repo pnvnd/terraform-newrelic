@@ -205,14 +205,30 @@ resource "aws_cloudwatch_metric_stream" "newrelic_metric_stream" {
   firehose_arn  = aws_kinesis_firehose_delivery_stream.newrelic_firehost_stream.arn
   output_format = "opentelemetry0.7"
 
-  # include_filter {
-  #   namespace = "AWS/EC2"
-  # }
+  exclude_filter {
+    namespace = "AWS/EC2"
+  }
   
-  # include_filter {
-  #   namespace = "AWS/Lambda"
-  # }
+  exclude_filter {
+    namespace = "AWS/Lambda"
+  }
   
+  exclude_filter {
+    namespace = "AWS/Firehose"
+  }
+
+  exclude_filter {
+    namespace = "AWS/Logs"
+  }
+
+  exclude_filter {
+    namespace = "AWS/EBS"
+  }
+
+  exclude_filter {
+    namespace = "AWS/CloudWatch/MetricStreams"
+  }
+
   # include_filter {
   #   namespace = "AWS/RDS"
   # }
@@ -236,8 +252,8 @@ resource "newrelic_cloud_aws_integrations" "foo" {
   linked_account_id = newrelic_cloud_aws_link_account.newrelic_cloud_integration_pull.id
   billing {}
   cloudtrail {}
-  health {}
-  trusted_advisor {}
-  vpc {}
+#  health {}
+#  trusted_advisor {}
+#  vpc {}
   x_ray {}
 }
