@@ -229,6 +229,10 @@ resource "aws_cloudwatch_metric_stream" "newrelic_metric_stream" {
     namespace = "AWS/CloudWatch/MetricStreams"
   }
 
+  exclude_filter {
+    namespace = "AWS/Glue"
+  }
+
   # include_filter {
   #   namespace = "AWS/RDS"
   # }
