@@ -205,13 +205,13 @@ resource "aws_cloudwatch_metric_stream" "newrelic_metric_stream" {
   firehose_arn  = aws_kinesis_firehose_delivery_stream.newrelic_firehost_stream.arn
   output_format = "opentelemetry0.7"
 
-  exclude_filter {
-    namespace = "AWS/EC2"
-  }
+  # exclude_filter {
+  #   namespace = "AWS/EC2"
+  # }
   
-  exclude_filter {
-    namespace = "AWS/Lambda"
-  }
+  # exclude_filter {
+  #   namespace = "AWS/Lambda"
+  # }
   
   exclude_filter {
     namespace = "AWS/Firehose"
