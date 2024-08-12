@@ -255,9 +255,9 @@ resource "newrelic_cloud_aws_integrations" "foo" {
   account_id = var.new_relic_account_id
   linked_account_id = newrelic_cloud_aws_link_account.newrelic_cloud_integration_pull.id
   billing {}
-  cloudtrail {}
+#  cloudtrail {}
 #  health {}
 #  trusted_advisor {}
 #  vpc {}
-  x_ray {}
+#  x_ray {}
 }
